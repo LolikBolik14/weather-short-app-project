@@ -47,9 +47,10 @@ function showWeather(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
+  document.querySelector("#time").innerHTML = time(response.data.dt * 1000);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
+    response.data.wind.speed * 3.6
   );
   let icon = document.querySelector("#icon");
   icon.setAttribute(
@@ -58,8 +59,6 @@ function showWeather(response) {
   );
   let temperature = Math.round(response.data.main.temp);
   document.querySelector("#degrees").innerHTML = temperature;
-
-  document.querySelector("#time").innerHTML = time(response.data.dt * 1000);
 
   // Fahrenheit & Celsius
   function fahren(event) {
